@@ -37,12 +37,12 @@ def prepare_beau4_soup(website):
     return products
 
 
-def get_response():
+def get_response(url):
     headers = utils.default_headers()
     headers.update(
         {
             'User-Agent': 'My User Agent 1.0',
         }
     )
-    response = get("https://alta.ge/headphone.html?sl=ge&items_per_page=999", headers=headers)
+    response = get(f"{url}?sl=ge&items_per_page=999", headers=headers)
     create_csv(prepare_beau4_soup(response.text))
